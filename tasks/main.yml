@@ -1,1 +1,30 @@
 ---
+# install
+- name: Enable zabbix repo.
+  template:
+    src: zabbix.repo.j2
+    dest: /etc/yum.repos.d/zabbix.repo
+    owner: root
+    group: root
+    mode: 00644
+
+- name: Ensure zabbix is installed.
+  yum:
+    name: zabbix-agent
+    state: installed
+    enablerepo: zabbix
+
+# configure
+- name: Copy zabbix configuration in place.
+  template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: 00644
+  notify:
+    - restart zabbix-agent
+
+# service
+- name: Ensure zabbix-agent is started and enabled to start at boot.
+  service: name=zabbix-agent state=started enabled=yes
