@@ -1,5 +1,5 @@
 ---
-zabbix_agent_version: 3.0
+zabbix_agent_version: "3.0"
 zabbix_agent_server: 127.0.0.1
 zabbix_agent_ListenPort: 10050
 zabbix_agent_Hostname: "{{ ansible_fqdn }}"
