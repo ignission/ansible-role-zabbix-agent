@@ -9,6 +9,7 @@ None.
 |:--|:---|:----------|:------|
 |zabbix_agent_version|String|Install version.|3.2|
 |zabbix_agent_server|String|Zabbix server host.|127.0.0.1|
+|zabbix_agent_ListenIP|String|List of comma delimited IP addresses that the agent should listen on.|0.0.0.0|
 |zabbix_agent_ListenPort|Integer|Listen port number.|10050|
 |zabbix_agent_Hostname|String|My hostname.|`ansible_fqdn`|
 
