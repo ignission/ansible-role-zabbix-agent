@@ -22,6 +22,6 @@ None.
   roles:
     - { role: zabbix-agent }
   vars:
-    zabbix_agent_server: 192.168.1.1  
+    zabbix_agent_server: 192.168.1.1
 
 ```
