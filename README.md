@@ -17,12 +17,16 @@ None.
 None.
 
 ## Example playbook
++ [firewalld](https://github.com/shomatan/ansible-firewalld.git)
 
 ```yaml
 - hosts: all
   roles:
+    - { role: firewalld }
     - { role: zabbix-agent }
   vars:
     zabbix_agent_server: 192.168.1.1
+  tasks:  
+    - firewalld: port={{ zabbix_agent_ListenPort }}/tcp permanent=true state=enabled immediate=true
 
 ```
