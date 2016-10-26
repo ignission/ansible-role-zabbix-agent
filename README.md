@@ -11,3 +11,17 @@ None.
 |zabbix_agent_server|String|Zabbix server host.|127.0.0.1|
 |zabbix_agent_ListenPort|Integer|Listen port number.|10050|
 |zabbix_agent_Hostname|String|My hostname.|`ansible_fqdn`|
+
+## Dependencies
+None.
+
+## Example playbook
+
+```yaml
+- hosts: all
+  roles:
+    - { role: zabbix-agent }
+  vars:
+    zabbix_agent_server: 192.168.1.1  
+
+```
