@@ -1,7 +1,7 @@
 # ansible-zabbix-agent
 Installs and configure Zabbix agent.
 
-### Dependencies
+### Requirements
 None.
 
 ### Role variables
