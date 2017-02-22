@@ -4,6 +4,10 @@ Installs and configure Zabbix agent.
 ### Requirements
 None.
 
+## Supported Platforms
++ EL 7
++ Ubuntu 16.04
+
 ### Role variables
 |Key|Type|Description|Default|
 |:--|:---|:----------|:------|
