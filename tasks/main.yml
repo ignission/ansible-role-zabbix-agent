@@ -1,22 +1,12 @@
 ---
-# install
-- name: Add multiple zabbix repositories into the same file (1/2)
-  yum_repository:
-    name: zabbix
-    description: Zabbix Official Repository - $basearch
-    baseurl: http://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/rhel/{{ ansible_distribution_major_version }}/$basearch/
-    gpgcheck: no
-    enabled: no
-- name: Add multiple zabbix repositories into the same file (2/2)
-  yum_repository:
-    name: zabbix-non-supported
-    description: Zabbix Official Repository non-supported - $basearch
-    baseurl: http://repo.zabbix.com/non-supported/rhel/{{ ansible_distribution_major_version }}/$basearch/
-    gpgcheck: no
-    enabled: no
+# setup/install tasks.
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+  static: no
 
-- name: Ensure zabbix is installed.
-  yum: name=zabbix-agent enablerepo=zabbix
+- include: setup-Ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+  static: no
 
 # configure
 - name: Copy zabbix configuration in place.
