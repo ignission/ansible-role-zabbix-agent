@@ -1,27 +1,28 @@
 ---
 # install
-- name: Enable zabbix repo.
-  template:
-    src: zabbix.repo.j2
-    dest: /etc/yum.repos.d/zabbix.repo
-    owner: root
-    group: root
-    mode: 00644
+- name: Add multiple zabbix repositories into the same file (1/2)
+  yum_repository:
+    name: zabbix
+    description: Zabbix Official Repository - $basearch
+    baseurl: http://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/rhel/{{ ansible_distribution_major_version }}/$basearch/
+    gpgcheck: no
+    enabled: no
+- name: Add multiple zabbix repositories into the same file (2/2)
+  yum_repository:
+    name: zabbix-non-supported
+    description: Zabbix Official Repository non-supported - $basearch
+    baseurl: http://repo.zabbix.com/non-supported/rhel/{{ ansible_distribution_major_version }}/$basearch/
+    gpgcheck: no
+    enabled: no
 
 - name: Ensure zabbix is installed.
-  yum:
-    name: zabbix-agent
-    state: installed
-    enablerepo: zabbix
+  yum: name=zabbix-agent enablerepo=zabbix
 
 # configure
 - name: Copy zabbix configuration in place.
   template:
     src: zabbix_agentd.conf.j2
     dest: /etc/zabbix/zabbix_agentd.conf
-    owner: root
-    group: root
-    mode: 00644
   notify:
     - restart zabbix-agent
 
