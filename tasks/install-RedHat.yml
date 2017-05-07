@@ -15,4 +15,11 @@
     enabled: no
 
 - name: Ensure zabbix is installed.
-  yum: name=zabbix-agent enablerepo=zabbix  
+  yum:
+    name: zabbix-agent
+    enablerepo: zabbix  
+
+# clean
+- name: Purge yum cache.
+  command: yum clean all
+  when: ansible_connection == 'docker'

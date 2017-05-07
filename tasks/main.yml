@@ -1,11 +1,6 @@
 ---
-# setup/install tasks.
-- include: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
-  static: no
-
-- include: setup-Ubuntu.yml
-  when: ansible_distribution == 'Ubuntu'
+# install tasks.
+- include: install-{{ ansible_os_family }}.yml
   static: no
 
 # configure
@@ -19,3 +14,4 @@
 # service
 - name: Ensure zabbix-agent is started and enabled to start at boot.
   service: name=zabbix-agent state=started enabled=yes
+  when: ansible_connection != 'docker'
