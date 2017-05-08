@@ -16,6 +16,7 @@ Role Variables
     zabbix_agent_ListenPort: 10050
     zabbix_agent_ListenIP: 0.0.0.0
     zabbix_agent_Hostname: "{{ ansible_fqdn }}"
+    zabbix_agent_LogFile: /var/log/zabbix/zabbix_agentd.log
 
 Dependencies
 ------------
