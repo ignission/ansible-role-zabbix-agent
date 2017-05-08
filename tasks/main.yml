@@ -11,6 +11,14 @@
   notify:
     - restart zabbix-agent
 
+- name: Modify /etc/zabbix permissions.
+  file:
+    path: /etc/zabbix
+    owner: zabbix
+    group: root
+    recurse: yes
+    state: directory
+
 # service
 - name: Ensure zabbix-agent is started and enabled to start at boot.
   service: name=zabbix-agent state=started enabled=yes
