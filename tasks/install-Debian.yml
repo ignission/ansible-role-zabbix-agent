@@ -5,7 +5,6 @@
 
 - name: Install gpg key.
   apt_key:
-    id: 79EA5ED4
     url: https://repo.zabbix.com/zabbix-official-repo.key
 
 - name: Ensure zabbix-agent is installed
