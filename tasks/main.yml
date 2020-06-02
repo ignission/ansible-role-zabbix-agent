@@ -10,6 +10,8 @@
     dest: /etc/zabbix/zabbix_agentd.conf
   notify:
     - restart zabbix-agent
+  tags:
+    - configure
 
 - name: Modify /etc/zabbix permissions.
   file:
@@ -18,8 +20,12 @@
     group: root
     recurse: yes
     state: directory
+  tags:
+    - configure
 
 # service
 - name: Ensure zabbix-agent is started and enabled to start at boot.
   service: name=zabbix-agent state=started enabled=yes
   when: ansible_connection != 'docker'
+  tags:
+    - configure
